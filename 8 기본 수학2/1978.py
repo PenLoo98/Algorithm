@@ -1,3 +1,4 @@
+# https://www.acmicpc.net/problem/1978
 N = int(input())
 count = 0
 nums = map(int, input().split())
