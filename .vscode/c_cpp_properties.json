@@ -3,7 +3,8 @@
         {
             "name": "Win32",
             "includePath": [
-                "F:\\Program Files (x86)\\MinGW\\include"
+                // "F:\\Program Files (x86)\\MinGW\\include",
+                "/Library/Developer/CommandLineTools/usr/bin/"
                 
             ],
             "defines": [
@@ -13,8 +14,11 @@
             ],
             "cStandard": "c11",
             "cppStandard": "c++17",
-            "intelliSenseMode": "windows-gcc-x86",
-            "compilerPath": "F:\\Program Files (x86)\\MinGW\\bin\\gcc.exe"
+            // "intelliSenseMode": "windows-gcc-x86",
+            "intelliSenseMode": "macos-gcc-arm64",
+            // "compilerPath": "F:\\Program Files (x86)\\MinGW\\bin\\gcc.exe"
+            "compilerPath": "/Library/Developer/CommandLineTools/usr/bin/g++",
+            "configurationProvider": "ms-vscode.cmake-tools"
         }
     ],
     "version": 4
