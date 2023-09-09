@@ -1,0 +1,10 @@
+## ignore files
+*.DS_Store
+/JAVA/Baekjoon.iml
+
+
+## ignore directories
+.idea/
+.vscode/
+/JAVA/.idea/
+/JAVA/out/
