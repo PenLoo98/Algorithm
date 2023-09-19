@@ -5,28 +5,32 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+// TODO
+// 분량 범위 마지막 날 최대한도 넘기지 않는 기능
+
 public class TaskCalculator {
     public static void main(String[] args) throws Exception {
-        int totalAmount = 400;
-        int startAmount = 10;
+        int totalAmount = 379; // 끝나는 분량
+        int achivedAmount = 39; // 시작 지점
+        int dailyAmount = 10;
         int increaseAmount = 2;
 
-        int spendDay = calculateDays(totalAmount,startAmount,increaseAmount);
+        int spendDay = calculateDays(totalAmount,achivedAmount,dailyAmount,increaseAmount); //15
         List<LocalDate> dateList = localDateList(spendDay);
-        List<String> amountList = calculateStackAmount(spendDay,startAmount,increaseAmount);
-        System.out.println(CalandarTaskText("도커 실습",dateList,amountList));
+        List<String> amountList = calculateStackAmount(spendDay,achivedAmount,dailyAmount,increaseAmount);
+        System.out.println(CalandarTaskText("개발자 온보딩",dateList,amountList));
     }
     
     // 매일 조금씩 증가하는 목표를 설정 후 총 몇일이 걸리는 지 계산
     // 총 분량, 시작 분량, 분량 증가량
-    public static int calculateDays(int targetAmount, int startAmount, int increaseAmout){
-        int achived = 0;
+    public static int calculateDays(int targetAmount, int achivedAmount, int dailyAmount, int increaseAmount){
+        int achived = achivedAmount;
         int spendDay = 0;
 
         while(achived < targetAmount){
-            achived += startAmount;
+            achived += dailyAmount;
             spendDay++;
-            startAmount += increaseAmout;
+            dailyAmount += increaseAmount;
         }
 //        System.out.printf("총 소요시간은 %d일입니다.\n",spendDay);
         return spendDay;
@@ -44,11 +48,11 @@ public class TaskCalculator {
     }
 
     // 오늘부터 n일까지 분량의 범위 리스트
-    public static List<String> calculateStackAmount(int totalDays, int startAmount, int increaseAmout){
+    public static List<String> calculateStackAmount(int totalDays,int achivedAmount,int dailyAmount, int increaseAmout){
         // (옵션)마지막 날은 총 분량을 넘기는 경우 따로 처리
         List<String> amountList = new ArrayList<>();
-        int stack = 1;
-        int amount = startAmount;
+        int stack = achivedAmount;
+        int amount = dailyAmount;
         for(int i=0;i<totalDays;i++){
             amountList.add(stack + "~" + (stack+amount) + " (" + amount + ")");
             stack += amount;
