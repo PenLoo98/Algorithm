@@ -15,9 +15,9 @@ public class TaskCalculator {
         int dailyAmount = 10;
         int increaseAmount = 2;
 
-        int spendDay = calculateDays(totalAmount,achivedAmount,dailyAmount,increaseAmount); //15
+        int spendDay = calculateDays(totalAmount,achivedAmount,dailyAmount,increaseAmount);
         List<LocalDate> dateList = localDateList(spendDay);
-        List<String> amountList = calculateStackAmount(spendDay,achivedAmount,dailyAmount,increaseAmount);
+        List<String> amountList = calculateStackAmount(spendDay,totalAmount,achivedAmount,dailyAmount,increaseAmount);
         System.out.println(CalandarTaskText("개발자 온보딩",dateList,amountList));
     }
     
@@ -48,13 +48,19 @@ public class TaskCalculator {
     }
 
     // 오늘부터 n일까지 분량의 범위 리스트
-    public static List<String> calculateStackAmount(int totalDays,int achivedAmount,int dailyAmount, int increaseAmout){
+    public static List<String> calculateStackAmount(int totalDays,int totalAmount,int achivedAmount,int dailyAmount, int increaseAmout){
         // (옵션)마지막 날은 총 분량을 넘기는 경우 따로 처리
         List<String> amountList = new ArrayList<>();
-        int stack = achivedAmount;
+        int stack = achivedAmount; // 시작 분량
         int amount = dailyAmount;
         for(int i=0;i<totalDays;i++){
-            amountList.add(stack + "~" + (stack+amount) + " (" + amount + ")");
+            // 마지막 날 총 분량을 넘기는 경우
+            if((stack+amount) > totalAmount){
+                amountList.add(stack + "~" + totalAmount + " (" + (totalAmount - stack) + ")");
+            }
+            else{
+                amountList.add(stack + "~" + (stack+amount) + " (" + amount + ")");
+            }
             stack += amount;
             amount += increaseAmout;
         }
