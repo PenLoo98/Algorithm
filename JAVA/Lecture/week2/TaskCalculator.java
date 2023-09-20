@@ -5,15 +5,12 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-// TODO
-// 분량 범위 마지막 날 최대한도 넘기지 않는 기능
-
 public class TaskCalculator {
     public static void main(String[] args) throws Exception {
         int totalAmount = 379; // 끝나는 분량
         int achivedAmount = 39; // 시작 지점
-        int dailyAmount = 10;
-        int increaseAmount = 2;
+        int dailyAmount = 10; // 일일 분량
+        int increaseAmount = 2; // 일일 분량 증가량
 
         int spendDay = calculateDays(totalAmount,achivedAmount,dailyAmount,increaseAmount);
         List<LocalDate> dateList = localDateList(spendDay);
