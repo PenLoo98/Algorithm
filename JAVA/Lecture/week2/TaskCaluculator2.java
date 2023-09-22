@@ -47,8 +47,10 @@ public class TaskCaluculator2 {
         // 합친 리스트로 누적 범위 분량 리스트 생성
         List<String> stackAmountRangeList =stackAmountRangeList(totalAmountList,achivedAmount);
 
-        // 소요일 날짜 리스트 생성
-        List<LocalDate> dateList = localDateList(totalAmountList.size(),beforeDays);
+//        // 소요일 날짜 리스트 생성
+//        List<LocalDate> dateList = localDateList(totalAmountList.size(),beforeDays);
+        // 소요일 날짜 리스트 생성(주말 제외)
+        List<LocalDate> dateList = localDateListOffWeekends(totalAmountList.size(),beforeDays);
 
         String result = CalandarTaskText(taskName,dateList,stackAmountRangeList);
         System.out.println(result);
@@ -134,6 +136,22 @@ public class TaskCaluculator2 {
         LocalDate startDay = LocalDate.now().minusDays(beforeDays);
         for(int i=0;i<days;i++){
             dateList.add(startDay.plusDays(i));
+        }
+        return dateList;
+    }
+
+    // n1일전부터 n2일까지의 날짜 계산하여 리스트로 반환
+    public static List<LocalDate> localDateListOffWeekends(int days, int beforeDays){
+        List<LocalDate> dateList = new ArrayList<>();
+        LocalDate startDay = LocalDate.now().minusDays(beforeDays);
+        int count = 0;
+        while (count < days){
+            // 주말 제외
+            if(startDay.getDayOfWeek().getValue() != 6 && startDay.getDayOfWeek().getValue() != 7){
+                dateList.add(startDay);
+                count++;
+            }
+            startDay = startDay.plusDays(1);
         }
         return dateList;
     }
