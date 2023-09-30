@@ -48,9 +48,9 @@ public class TaskCaluculator2 {
         List<String> stackAmountRangeList =stackAmountRangeList(totalAmountList,achivedAmount);
 
 //        // 소요일 날짜 리스트 생성
-//        List<LocalDate> dateList = localDateList(totalAmountList.size(),beforeDays);
+        List<LocalDate> dateList = localDateList(totalAmountList.size(),beforeDays);
         // 소요일 날짜 리스트 생성(주말 제외)
-        List<LocalDate> dateList = localDateListOffWeekends(totalAmountList.size(),beforeDays);
+//        List<LocalDate> dateList = localDateListOffWeekends(totalAmountList.size(),beforeDays);
 
         String result = CalandarTaskText(taskName,dateList,stackAmountRangeList);
         System.out.println(result);
