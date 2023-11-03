@@ -9,29 +9,25 @@ public class MyFrame extends JFrame {
     public MyFrame(){
         setTitle("Absolute Position Test");
         setSize(300, 150);
-
-        JPanel cardPanel = new JPanel();
-        Container cPane = getContentPane();
+        setLayout(new BorderLayout());
 
         CardLayout cardLayout = new CardLayout();
-        setLayout(cardLayout);
-
+        JPanel cardPanel = new JPanel();
+        cardPanel.setLayout(cardLayout);
 
         b1 = new JButton("Button #1");
-        add(b1, "North");
-        b1.setSize(90,20);
-
         b2 = new JButton("Button #2");
-        add(b2, "North");
-        b1.setSize(90,20);
-
         b3 = new JButton("Button #3");
-        add(b3, "North");
-        b1.setSize(90,20);
 
-        b1.addActionListener(e -> cardLayout.next(cPane));
-        b2.addActionListener(e -> cardLayout.next(cPane));
-        b3.addActionListener(e -> cardLayout.next(cPane));
+        cardPanel.add(b1);
+        cardPanel.add(b2);
+        cardPanel.add(b3);
+
+        b1.addActionListener(e -> cardLayout.next(cardPanel));
+        b2.addActionListener(e -> cardLayout.next(cardPanel));
+        b3.addActionListener(e -> cardLayout.next(cardPanel));
+
+        add(cardPanel, BorderLayout.NORTH);
 
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
