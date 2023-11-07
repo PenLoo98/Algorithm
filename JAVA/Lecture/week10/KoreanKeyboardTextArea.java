@@ -5,16 +5,18 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class KoreanKeyboard extends JFrame {
+public class KoreanKeyboardTextArea extends JFrame {
     private JPanel panel;
-    private JTextField tField;
+    //    private JTextField tField;
+    private JTextArea tField;
     private JButton[] buttons;
 
-    public KoreanKeyboard() {
-        setTitle("한글 키보드");
-        setSize(600, 200);
+    public KoreanKeyboardTextArea() {
+        setTitle("한글 줄바꿈 키보드");
+        setSize(600, 1000);
 
-        tField = new JTextField(35);
+//        tField = new JTextField(35);
+        tField = new JTextArea(10,10);
         tField.setText("");
         tField.setEnabled(false);
 
@@ -74,6 +76,6 @@ public class KoreanKeyboard extends JFrame {
 
 
     public static void main(String[] args) {
-        KoreanKeyboard k = new KoreanKeyboard();
+        KoreanKeyboardTextArea k = new KoreanKeyboardTextArea();
     }
 }
