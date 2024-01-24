@@ -3,20 +3,22 @@
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
     <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/1 입출력과 사칙연산(완료)" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/2 조건문" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/3 반복문" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/4 1차원 배열" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/5 문자열" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/6 심화 1" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/7 2차원 배열" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/8 일반 수학 1" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/9 약수, 배수와 소수" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/10 기하" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/11 시간복잡도" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/12 브루트 포스" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/13 정렬" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/14 집합과 맵" isTestSource="false" />
+               <sourceFolder url="file://$MODULE_DIR$/*" type="java-test-resource" isTestSource="false" />
+              <sourceFolder url="file://$MODULE_DIR$/1 입출력과 사칙연산(완료)" isTestSource="false" />
+              <sourceFolder url="file://$MODULE_DIR$/2 조건문" isTestSource="false" />
+              <sourceFolder url="file://$MODULE_DIR$/3 반복문" isTestSource="false" />
+              <sourceFolder url="file://$MODULE_DIR$/4 1차원 배열" isTestSource="false" />
+              <sourceFolder url="file://$MODULE_DIR$/5 문자열" isTestSource="false" />
+              <sourceFolder url="file://$MODULE_DIR$/6 심화 1" isTestSource="false" />
+              <sourceFolder url="file://$MODULE_DIR$/7 2차원 배열" isTestSource="false" />
+              <sourceFolder url="file://$MODULE_DIR$/8 일반 수학 1" isTestSource="false" />
+              <sourceFolder url="file://$MODULE_DIR$/9 약수, 배수와 소수" isTestSource="false" />
+              <sourceFolder url="file://$MODULE_DIR$/10 기하" isTestSource="false" />
+              <sourceFolder url="file://$MODULE_DIR$/11 시간복잡도" isTestSource="false" />
+              <sourceFolder url="file://$MODULE_DIR$/12 브루트 포스" isTestSource="false" />
+              <sourceFolder url="file://$MODULE_DIR$/13 정렬" isTestSource="false" />
+              <sourceFolder url="file://$MODULE_DIR$/14 집합과 맵" isTestSource="false" />
+              <sourceFolder url="file://$MODULE_DIR$/16 스택 큐 덱" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
