@@ -2,10 +2,9 @@ import sys
 input = sys.stdin.readline
 
 # 골드바흐 수: 2보다 큰 모든 짝수는 두 소수의 합으로 나타낼 수 있다.
-T = int(input())
 
 # 소수인지 판별하는 함수
-def is_sosu(num):
+def is_prime(num):
     cnt = 0
     for i in range(2,num+1):
         if(num%i==0):
@@ -15,47 +14,37 @@ def is_sosu(num):
     return False
 
 # 2~Max까지의 소수를 구해 리스트로 만들기 
-def make_sosu_list(max):
+def make_prime_list(max):
     sosu_list = []    
     for i in range(2,max):
-        if(is_sosu(i)):
+        if(is_prime(i)):
             sosu_list.append(i)
     return sosu_list
 
-# 리스트에서 중복을 허용하여 두 소수를 뽑아 합이 일치하는 쌍 구하기 
+# 압력된 값에서 리스트에서 중복을 허용하여 두 소수를 뽑아 합이 일치하는 쌍 구하기 
 def get_couple_sosu(num, sosu_list):
-    couple_list = []
-    # 짝수가 두 소수의 합으로 표현되는 경우 리스트에 추가 
-    for i in sosu_list:
-        for j in sosu_list:
-            if(num==i+j):
-                couple_list.append((i,j))
-                break
-    # 두 소수의 차이가 가장 적은 1쌍
-    min_couple = couple_list[0]
-    min_dif = abs(couple_list[0][0] - couple_list[0][1])
-    for couple in couple_list:
-        diff = abs(couple[0]-couple[1])
-        if(diff<min_dif):
-            min_couple = couple
-            min_dif = diff
-    if(min_couple[0] > min_couple[1]):
-        temp = min_couple[1]
-        min_couple[1] = min_couple[0]
-        min_couple[0] = temp
-    return print(min_couple[0], min_couple[1])
-        
+    big_prime = int(num/2)
+    small_prime = int(num/2)
+
+    # 합을 나타낸 두 수가 모두 소수인 경우
+    if(big_prime in sosu_list and small_prime in sosu_list):
+        return print(small_prime, big_prime)
     
+    # 입력값/2+입력값/2가 소수에 없는 경우
+    else:
+        # 둘 중에 하나라도 소수가 아니면 값을 변경
+        while(big_prime not in sosu_list or small_prime not in sosu_list):
+            big_prime+=1
+            small_prime-=1
+        return print(small_prime, big_prime)
+    
+# 입력값 받기
+T = int(input())
 inputs = []
-# T번 숫자를 입력받고 리스트에 저장
 for i in range(0,T):
     inputs.append(int(input()))
-
-# 입력받은 값 중 최대값을 구한다. 
 maxValue = max(inputs)
+prime_list = make_prime_list(maxValue)
 
-sosu_list = make_sosu_list(maxValue)
-
-# 구한 소수쌍 중 차이가 가장 작은 것을 출력한다.
 for input in inputs:
-    get_couple_sosu(input, sosu_list)
+    get_couple_sosu(input,prime_list)
