@@ -1,35 +1,37 @@
 import sys
-from collections import deque 
 input = sys.stdin.readline
 
 
 N=int(input())
-queue = deque()
+queue = []
+point = 0
 
 for _ in range(N):
     commands = list(input().split())
     if commands[0]=='push':
         queue.append(commands[1])
     elif commands[0]=='pop':
-        if queue:
-            # print(queue.pop(0))
-            print(queue.popleft())
+        if len(queue)>point:
+            print(queue[point])
+            point+=1
         else:
             print(-1)
     elif commands[0]=='size':
-        print(len(queue))
+        print(len(queue)-point)
     elif commands[0]=='empty':
-        if(len(queue)==0):
+        if(point==len(queue)):
             print(1)
+            queue = []
+            point = 0
         else:
             print(0)
     elif commands[0]=='front':
-        if queue:
-            print(queue[0])
+        if len(queue)>point:
+            print(queue[point])
         else:
             print(-1)
     elif commands[0]=='back':
-        if queue:
+        if len(queue)>point:
             print(queue[-1])
         else:
             print(-1)

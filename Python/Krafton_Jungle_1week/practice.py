@@ -1,31 +1,30 @@
 import sys
-
-
-def dfs(start, now, value, cnt):
-    global ans
-    if cnt == N:
-        if a[now][start]:
-            value += a[now][start]
-            if ans > value:
-                ans = value
-        return
-
-    if value > ans:
-        return
-
-    for i in range(N):
-        if not visited[i] and a[now][i]:
-            visited[i] = 1
-            dfs(start, i, value + a[now][i], cnt + 1)
-            visited[i] = 0
-
+input = sys.stdin.readline
 
 N = int(input())
-a = [list(map(int, input().split()))for _ in range(N)]
-ans = sys.maxsize
-visited = [0] * N
-for i in range(N):
-    visited[i] = 1
-    dfs(i, i, 0, 1)
-    visited[i] = 0
-print(ans)
+
+def is_safe(row_index):
+    for i in range(row_index):
+        # 같은 행
+        if row[row_index] == row[i] or abs(row[row_index] - row[i]) == abs(row_index-i):
+            return False
+    return True
+
+def n_queen(startRow):
+    global count
+    
+    # 마지막 행까지 탐색한 경우
+    if startRow==N:
+        count += 1
+    else:
+        for column in range(N):
+            row[startRow] = column
+            # 퀸이 안전 하다면 다음 탐색
+            if is_safe(startRow):
+                n_queen(startRow+1)
+
+row = [0] * N
+count = 0
+n_queen(0)
+
+print(count)
