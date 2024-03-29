@@ -6,7 +6,9 @@ def dfs():
     if len(stack)==m:
         # 중복을 허용하지 않으려면 어떻게 해야하지?
         # 지난 번에 출력하지 않은 조합인 경우
-        if stack not in success_case:
+        sorted_stack = sorted(stack)
+        if sorted_stack not in success_cases:
+            success_cases.append(sorted_stack)
             print(" ".join(map(str,stack)))
         return
     # 반복문 
@@ -25,5 +27,6 @@ def dfs():
 
 n,m = map(int, input().split())
 stack = []
+success_cases = []
 visited = [False]*(n+1)
 dfs()
