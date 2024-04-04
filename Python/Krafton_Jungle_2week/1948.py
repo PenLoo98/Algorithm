@@ -1,27 +1,50 @@
 import sys
-import heapq
 input = sys.stdin.readline
+from collections import deque
 
+# 1. 입력 받기
 n = int(input())
 m = int(input())
-# 출발 도시, 도착 도시, 걸리는 시간
-move_time = []
+
+forward = [[] for _ in range(n+1)] # forward[출발노드] = [도착노드, 이동시간]
+backward = [[] for _ in range(n+1)] # backward[출발노드] = [도착노드, 이동시간]
+in_degree = [0]*(n+1) # in_degree[노드] = 진입차수
+distance = [0]*(n+1) # distance[노드] = 출발노드에서 해당 노드까지 총 이동한 거리
+queue = deque() # 진입차수가 0인 노드를 저장하는 deque
 for _ in range(m):
-    start, end, time = map(int, input().split())
-    # 최대힙으로 저장하기 위해 -time을 인덱스 0에 저장
-    heapq.heappush(-time, start, end, time)
-start_city, end_city = map(int, input().split())
+    before, after, time = map(int,input().split()) # 출발노드, 도착노드, 이동시간
+    forward[before].append([after,time])
+    backward[after].append([before,time])
+    in_degree[after] += 1 
+start,end = map(int, input().split()) # 출발도시, 도착도시
 
-# 데이터 자료구조 뭘로 해야되지? 
-# 
+# 2. 진입차수 0인 노드를 시작노드로 정하기 
+queue.append(start)
 
-# 제일 오래 걸리는 경로로 올 때 시간 구하기
-# 이동거리 0으로 두고 더 긴 이동거리가 있을 때마다 갱신해주면 될듯?
+# 3. 시작 노드를 기준으로 시작노드와 연결된 간선을 하나씩 지운다.
+while queue:
+    current = queue.popleft()
+    # 연결된 모든 노드를 확인한다.
+    for after,time in forward[current]:
+        in_degree[after]-=1 # 진입차수 1 감소
+        distance[after] = max(distance[after], distance[current]+time) # 최장거리면 갱신
+        if in_degree[after]==0: # 진입차수 0인 노드들 큐에 담기
+            queue.append(after)
+print(distance[end]) # 출발지에서 도착지까지의 최장거리 출력
 
-# 가장 많은 도로를 거쳐서 오는 사람이 달린 도로의 수 구하기
-# 위상정렬로 노드 차수 1씩 지우면서 지나온 도로 수만큼 move 카운트 증가 
-# move 카운터 최대값 출력 -> 이동 경로별로 move카운트 저장해야하나? 
-# 아니면 그냥 move 카운트가 더 클때마다 갱신해주면 될듯 -> DP처럼?
-# 
-
-# 만나는 시간, 도로의 수 출력 
+# 4. 백트래킹하며 최장거리일 때 지나온 도로의 수를 카운트한다.
+pass_routes = 0 # 최장거리일 때 지나온 도로의 수
+visited = [False]*(n+1) # 방문했는지 확인하기 위해
+queue.append(end) # 도착지를 출발지로 설정 -> 백트래킹 위해서
+while queue:
+    current = queue.popleft()
+    # 연결된 모든 노드를 확인한다.
+    for after,time in backward[current]:
+        # 현재 노드와 연결된 도시라면 pass_routes를 카운트
+        if distance[current] - distance[after] == time:
+            pass_routes+=1
+            # 중복 방문 방지
+            if not visited[after]:
+                queue.append(after)
+                visited[after] = True
+print(pass_routes)

@@ -1,8 +1,9 @@
 import sys
 from collections import deque
 
-n=int(input()) #노드, 도시 개수
-m=int(input()) #도로의 개수
+# 입력받기
+n=int(input())
+m=int(input())
 graph=[[]*(n+1) for _ in range(n+1)]
 back_graph=[[]*(n+1) for _ in range(n+1)]
 indegree=[0]*(n+1) #진입차수
@@ -20,10 +21,12 @@ q.append(start)
 
 def topologysort():
     while q:
+        # 맨 위의 큐를 뽑아 진입차수 감소시키며 갱신
         cur=q.popleft()
         for i,t in graph[cur]:
             indegree[i]-=1
             result[i]=max(result[i],result[cur]+t)
+            # 진입차수가 0인 것부터 큐에 넣는다.
             if indegree[i]==0:
                 q.append(i)
 
@@ -39,7 +42,6 @@ def topologysort():
                 if check[i]==0: #큐에 한번씩만 담을 수 있도록,중복방문제거 
                     q.append(i)
                     check[i]=1
-
     print(result[end])
     print(cnt)
 
