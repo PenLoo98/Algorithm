@@ -10,15 +10,14 @@ dp = [[0]*n for _ in range(n)]
 
 # n: 행렬의 수
 # i: 곱셈을 수행할 행렬의 개수
-for i in range(1,n): # 
-    for j in range(0,n-i): 
-        if i==1:
-            # 1칸 밖에 차이나지 않는 건 그냥 곱합
-            dp[j][j+i] = matrix[j][0]*matrix[j+i][0]*matrix[j+i][1]
-            continue
 
-        dp[j][j+i] = float('inf')
-        for k in range(j,j+i):
-            dp[j][j+i] = min(dp[j][j+i],
-                             dp[j][k]+dp[k+1][j+i]+matrix[j][0]+matrix[k][1]+matrix[j+i][1])
+for term in range(1,n):
+    for i in range(0,n-term):
+        if term==1:
+            dp[i][i+term] = matrix[i][0]*matrix[i+term][0]*matrix[i+term][1]
+            continue
+        dp[i][i+term] = float('inf')
+        for mid in range(i,i+term):
+            dp[i][i+term] = min(dp[i][i+term],
+                                dp[i][mid]+dp[mid+1][i+term]+matrix[i][0]*matrix[mid][1]*matrix[i+term][1])
 print(dp[0][n-1])
