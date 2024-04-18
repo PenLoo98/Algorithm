@@ -1,0 +1,2 @@
+inputWord = input()
+bombWord = input()
