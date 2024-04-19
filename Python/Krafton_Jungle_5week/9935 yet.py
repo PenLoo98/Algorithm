@@ -1,2 +1,0 @@
-inputWord = input()
-bombWord = input()
