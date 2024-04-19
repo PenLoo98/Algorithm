@@ -3,7 +3,7 @@ from collections import deque
 input=sys.stdin.readline
 
 
-def get_min_move(startX, startY, endX, endY):
+def bfs_get_min_move(startX, startY, endX, endY):
     if(startX==endX and startY==endY):
         return print(0)
 
@@ -50,4 +50,4 @@ for _ in range(t):
     # 도착 좌표 
     endX, endY=map(int,input().split())
 
-    get_min_move(startX, startY, endX, endY)
+    bfs_get_min_move(startX, startY, endX, endY)
