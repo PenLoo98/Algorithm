@@ -1,2 +1,6 @@
 *.prob
 */*.prob
+
+*.class
+
+.cph
