@@ -18,9 +18,11 @@ public class _1026{
         Arrays.sort(a);
         Arrays.sort(b);
 
+        int minSum = 0;
         for(int i=0; i<n; i++){
-            a[i] = a[i] * b[n-i-1];
+
+            minSum += a[i] * b[n-i-1];
         }
-        System.out.println(Arrays.stream(a).sum());
+        System.out.println(minSum);
     }
 }
