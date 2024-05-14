@@ -1,5 +1,5 @@
-import java.util.*;
 import java.io.*;
+import java.util.*;
 
 public class _15961 {
     public static void main(String[] args) throws IOException{
@@ -46,6 +46,11 @@ public class _15961 {
             if(eatSushi[inSushi] == 0 && inSushi != c){
                 curDiversity++; // 처음 먹는 초밥이면 가짓수 증가
             }
+            eatSushi[inSushi]++; // 먹은 초밥의 수 증가
+            sushiQ.add(inSushi); // 먹은 초밥의 번호를 큐에 저장
+
+            maxDiversity = Math.max(maxDiversity, curDiversity);
         }
+        System.out.println(maxDiversity);
     }
 }
