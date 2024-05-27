@@ -26,5 +26,7 @@ public class _10815 {
             }
         }
         bw.flush();
+        bw.close();
+        br.close();
     }
 }
