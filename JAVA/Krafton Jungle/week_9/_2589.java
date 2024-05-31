@@ -27,8 +27,8 @@ public class _2589 {
         for(int i=0;i<height;i++){
             for(int j=0;j<width;j++){
                 if(map[i][j]=='L'){
-                    visited = new boolean[height][width];
-                    int result = bfs(j,i);
+                    visited = new boolean[height][width]; // 탐색을 시작할 때 visited를 초기화해준다.
+                    int result = bfs(j,i); // map 기준으로 [y][x]이므로 뒤집어서 넣어준다.
                     maxMove = Math.max(maxMove, result);
                 }
             }
@@ -42,7 +42,7 @@ public class _2589 {
     static int bfs(int curX, int curY){
         Queue<int[]> q = new LinkedList<>();
         
-        int moveCount = -1;
+        int moveCount = 0;
         visited[curY][curX] = true;
         q.add(new int[] {curX, curY, 0});
 
