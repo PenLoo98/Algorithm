@@ -42,10 +42,7 @@ public class _2503{
                     if(j==k || j==l || k==l){
                         continue;
                     }
-                    // 0이 들어가는 경우
-                    if(j==0 || k==0 || l==0){
-                        continue;
-                    }
+                  
                     // 모든 조건을 만족하는지 확인
                     int checkCount = 0; // 테스트 입력을 만족하는지 확인하는 변수
                     for(NumberInfo info : list){
