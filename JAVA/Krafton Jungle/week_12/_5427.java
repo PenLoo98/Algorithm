@@ -15,7 +15,8 @@ public class _5427 {
             char[][] map = new char[height][width]; // 지도
             Queue<int[]> fireQueue = new LinkedList<>(); // 불의 위치를 담은 큐
             Queue<int[]> sgQueue = new LinkedList<>(); // 상근이의 위치를 담은 큐
-            int[] sangPos = new int[2]; // 상근의 출발 위치
+
+            // 지도 입력받기
             for(int j=0;j<height;j++){
                 String line = br.readLine();
                 for(int k=0;k<width;k++){
@@ -24,15 +25,13 @@ public class _5427 {
                         fireQueue.add(new int[]{j,k});
                     }
                     if(map[j][k] == '@'){
-                        sangPos[0] = j;
-                        sangPos[1] = k;
-                        sgQueue.add(sangPos);
+                        sgQueue.add(new int[]{j,k}); // 상근이 출발 위치를 큐에 넣음
                     }
                 }
             }
 
-            boolean isEscaped = false;
-            int escapeTime = 0;
+            boolean isEscaped = false; // 탈출 성공 여부
+            int escapeTime = 0; // 탈출 시간
 
             while(!sgQueue.isEmpty()){
                 escapeTime++;
@@ -52,18 +51,21 @@ public class _5427 {
                     }
                 }
 
-                // 상근 이동
+                // 상근 탐색
                 int sangSize = sgQueue.size();
                 for(int j=0;j<sangSize;j++){
-                    int[] cur = sgQueue.poll();
+                    int[] currentPosition = sgQueue.poll();
                     for(int k=0;k<4;k++){
-                        int nx = cur[0] + dx[k];
-                        int ny = cur[1] + dy[k];
+                        // 상하좌우로 탐색할 좌표
+                        int nx = currentPosition[0] + dx[k];
+                        int ny = currentPosition[1] + dy[k];
+
+                        // 탈출에 성공했다면 루프 종료
                         if(nx < 0 || ny < 0 || nx >= height || ny >= width){
                             isEscaped = true;
                             break;
                         }
-                        // 갈 수 없거나 이미 방문한 곳이면 무시
+                        // 갈 수 없거나, 이미 방문한 곳이면 무시
                         if(map[nx][ny] == '#' || map[nx][ny] == '*' || map[nx][ny] == '@') continue;
                         // 이동 가능한 곳이면 이동
                         if(map[nx][ny] == '.'){
@@ -75,6 +77,7 @@ public class _5427 {
                 }
                 if(isEscaped) break;
             }
+
             // 탈출 성공 여부에 따라 다른 출력
             if(isEscaped){
                 System.out.println(escapeTime);
