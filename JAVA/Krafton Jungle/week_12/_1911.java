@@ -23,12 +23,14 @@ public class _1911 {
             st = new StringTokenizer(br.readLine());
             int start = Integer.parseInt(st.nextToken()); // 웅덩이 시작 좌표
             int end = Integer.parseInt(st.nextToken()); // 웅덩이 끝 좌표
+            // 가장 멀리있는 웅덩이 좌표 구하기
             if(end>lastWater){
                 lastWater=end;
             }
             waterInputList.add(new Water(start, end)); // 리스트에 웅덩이 정보 저장
         }
 
+        // 시작 좌표 -> 끝 좌표 순서로 오름차순으로 정렬
         Collections.sort(waterInputList, new Comparator<Water>(){
             @Override
             public int compare(Water o1, Water o2) {
@@ -42,7 +44,9 @@ public class _1911 {
         int covers = 0; // 커버된 널판지 수
         int coversIndex = -1; // 커버된 널판지 인덱스
         
+        // 입력된 모든 웅덩이를 기준으로 정렬
         for(Water water : waterInputList){
+            // 이미 웅덩이가 덮인 경우 다음 웅덩이로 넘어간다
             if(coversIndex > water.end){
                 continue;
             }     
@@ -50,7 +54,7 @@ public class _1911 {
             if(coversIndex<water.start){
                 coversIndex = water.start;
             }
-            int remain = (water.end - coversIndex)%l;
+            int remain = (water.end - coversIndex)%l; // 끝좌표까지 덮기위해 추가로 덮이는 부분
             // 나머지가 0이면 그대로 
             if(remain==0){
                 covers += (water.end - coversIndex)/l;
@@ -64,6 +68,6 @@ public class _1911 {
             }
         }
         
-        System.out.println(covers);
+        System.out.println(covers); // 결과 출력
     }   
 }
