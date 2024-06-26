@@ -19,11 +19,11 @@ public class _2422 {
         int answer = 0;
         for(int i=1;i<=n-2;i++){
             for(int j=i+1;j<=n-1;j++){
+                // 섞으면 안되는 경우 제외
+                if(isNotMix[i][j]){continue;}
                 for(int k=j+1;k<=n;k++){
                     // 섞으면 안되는 경우 제외
-                    if(isNotMix[i][j] | isNotMix[i][k] | isNotMix[j][k]){
-                        continue;
-                    }
+                    if(isNotMix[i][k] | isNotMix[j][k]){continue;}
                     answer++;
                 }
             }
